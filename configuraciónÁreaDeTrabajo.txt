@@ -120,9 +120,6 @@
     ó
     * git add nombrearchivos.extension README.ms
 
-    luego 
-    * git commit -m "first commit"
-
     luego
     me dice que ingrese mail y miUsuarioDeUbuntu
     * git config --global user.email "you@example.com"
@@ -149,5 +146,5 @@ PARA SUBIR CAMBIOS Y GUARDARLOS EN GITHUB
 
 
 token para 30 dias 
-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
+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
 
