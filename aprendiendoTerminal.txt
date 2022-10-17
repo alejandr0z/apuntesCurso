@@ -63,12 +63,14 @@ COMANDOS TERMINAL, MANIPULANDO ARCHIVOS Y DIRECTORIOS
 QUE ES UN COMANDO 
     un comando pueden ser 4 cosas
     1. Un programa ejecutable
-    2. Un comando de utilidad de la shell. Esto es un programa en sí mismo, que puede tener funciones. Ejemplo cd
+    2. Un comando de utilidad de la shell. Esto es un programa en sí mismo, que puede tener funciones.
+         Ejemplo cd
     3. Una función de shell. Son funciones de shell externas al comando de utilidad. Ejemplo mkdir
     4. Un alias. Un ejemplo es ls
 
     * type <comando>: Nos permite conocer que tipo de comando es 🤔
-    * alias l="<secuencia de comandos>": Nos permite crear comandos. Son temporales, se borran al cerrar la terminal 👶🏼
+    * alias nombreQueLeDoyAmiALias="<secuencia de comandos>": Nos permite crear comandos. Son temporales,
+         se borran al cerrar la terminal 👶🏼 Ej: alias ada="cd home/ale/"
 
 WILDCARDS 
     Las wildcards o comodines son una serie de caracteres especiales que nos permiten encontrar patrones 
