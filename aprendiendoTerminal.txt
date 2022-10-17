@@ -1,0 +1,149 @@
+¿Qué es la terminal?
+
+La terminal es una herramienta indispensable que cualquier persona en la tecnología debe conocer 👀. 
+Es importante porque:
+Te da flexibilidad 📏. Con unos pocos comandos, puedes hacer mucho.
+Es mucho más veloz que una interfaz 💻.
+Es tu única opción si no hay interfaz 😆, como para configurar un servidor remoto.
+Puedes invocar demonios 👿. Hay que tener cuidado con los comandos.
+Específicamente, la terminal es una interfaz gráfica muy sencilla que simula una línea de comandos:
+TERMINAL: Ventana que muestra el promt. este aloja la shell.
+SHELL O LINEA DE COMANDOS: es un programa que toma los comandos y los pasa al sistema operativo para hacer algo
+Programa que ejecuta los comandos. Hay varios tipos de shell, pero sirven para lo mismo. La más comunes son 
+bash shell o Z shell. En este curso, usaremos la primera 🍎.
+Es importante comenzar a usar Linux 😟.
+Un comando es un programa que se puede ejecutar desde la terminal.
+
+SISTEMA DE ARCHIVOS EN LA TERMINAL 
+    (como esta constituida el arbol)
+
+    * / --> Es la raiz del sistema de archivos
+
+COMANDOS TERMINAL, MANIPULANDO ARCHIVOS Y DIRECTORIOS
+
+    * pwd --> para ver la ubicación en la que estamos    
+    * ls --> para listar 
+    * ls -l --> me lista los archivos con su tamaño en bites
+    * ls -lh --> me lista los archivos con su tamaño entendible por el ser humano
+    * ls -a --> Mostrar todos los archivos, incluso los ocultos
+    * ls -la --> Ver todos los archivos incluso los ocultos
+    * ls -lS --> lista y ordena directorios y archovis por tamaño
+    * ls -lr --> lista y ordena directorios y archovis en orden inverso al orden alfabetico
+    * cd --> para cambiar de directorio
+    * cd .. --> me lleva una carpeta atras
+    * cd /carpeta a la que quiero ir --> para avanzar una carpeta adelante
+    * cd / --> para ir directo al directorio home o root
+    * cd mnt --> para ir a las carpetas de windows
+    * cd ~ --> me lleva a mi carpeta home
+    * mkdir nombreArchivo --> para crear una carpeta 
+    * sudo mkdir --> crear un directorio con permiso de administrador
+    * touch nombreArchivoQueQuieroCrear --> para crear un archivo
+    * cat archivoQueQuieroAbrir --> para ver en consola un archivo
+    * tree --> Para ver archivos, Este despliega todo los directorios como un arbol
+    * tree -L nivelQueQuieroProfundizar --> Para ver archivos, Este despliega todo los directorios como un arbol
+    * man app que quiero ver su manual --> para ver las instrucciones de la aplicacion    
+    * help <comando> --> muestra una ayuda del comando
+    * info <comando> --> para ver info del comando
+    * whatis <comando> --> muestra una info resumida del comando 
+    * mv archivoQueQUieroMover carpetaAlaQueVoyAmover --> para mover un archivo a otro directorio 
+    * mv archivoQueQUieroMover nuevoNombre --> para cambiar de nombre a un archivo 
+    * rm nombreArchivoQueQuieroBorrar.extension --> para borrar un solo archivo
+    * rm -d nombreCarpetaVacia --> Para borrar una carpeta vacia
+    * rm -r nombreCarpetaQueQuieroBorrar --> para borrar una carpeta llena 
+    * rm -ri nombreCarpetaQueQuieroBorrar --> para borrar una carpeta llena de forma recursiva 
+    * rm -rf nombreCarpetaQueQuieroBorrar --> para borrar una carpeta llena MUY PELIGROSA BORRA TODO
+        * -i (de interactive) te pregunta si estás seguro de eliminar el archivo
+        * -r (de recursive) elimina todo lo que esté dentro de una carpeta
+        * -f (de force) fuerza a borrar todo.
+    * file nombreArchivo--> me da la información acerca del archivo que quiero
+    * cp nombreDelArchivo nombreDeLaCopia --> para copiar archivos (este lo haria en el mismo directorio)
+    * cp nombreDelArchivo nombreDeLaCopia --> para copiar archivos (este lo haria en el mismo directorio)
+    * cp nombreDelArchivo ruta/nombreDeLaCopia --> para copiar archivos (este lo haria en el directorio que elija)
+    
+QUE ES UN COMANDO 
+    un comando pueden ser 4 cosas
+    1. Un programa ejecutable
+    2. Un comando de utilidad de la shell. Esto es un programa en sí mismo, que puede tener funciones. Ejemplo cd
+    3. Una función de shell. Son funciones de shell externas al comando de utilidad. Ejemplo mkdir
+    4. Un alias. Un ejemplo es ls
+
+    * type <comando>: Nos permite conocer que tipo de comando es 🤔
+    * alias l="<secuencia de comandos>": Nos permite crear comandos. Son temporales, se borran al cerrar la terminal 👶🏼
+
+WILDCARDS 
+    Las wildcards o comodines son una serie de caracteres especiales que nos permiten encontrar patrones 
+    o realizar búsquedas más avanzadas. Es aplicable para archivos y directorios.
+
+    Las wildcards te sirven para realizar seccionamiento de archivos o directorios, ademas de ls los 
+    wildcards tambien pueden usarse con cualquier comando que realice la manipulación de archivos como mv, 
+    cp y rm.
+
+    por ejemplo buscar todos los archivos que terminen con .txt o todos los archivos que sean html
+
+Tipos de wildcards
+    Buscar todo (*)
+    El asterisco te ayuda a buscar toda la información dentro de una carpeta, pero puedes limitar su uso. 
+    Si por ejemplo quieres buscar los archivos que tengan una extensión “.png”, escribes:
+    
+        * ls *.txt --> busca todas las coincidencias que terminan en .txt
+        * ls *.html --> busca todas las coincidencias que terminan en .html
+        * ls -l *.png --> busca todas las coincidencias que terminan en .png
+        * ls datos* --> busca todas las coincidencias con datos
+
+    Buscar por cantidad de caracteres (?)
+        Si dentro de tus archivos tuvieras una especie de código para guardar tus fotos, algo así como “foto1.png”, “foto2.png”, “foto3.png”, etc. En este caso, sabemos que primero tenemos el string “foto”, luego un solo número y por último la extensión “.png”.
+
+        Si quisieras buscar esas fotos escribirías:
+        * ls -l foto?.png --> busca todos las coincidencias con foto al inicio y 1 caracter diferente al final
+        * ls datos? --> busca todos las coincidencias con datos al inicio y 1 caracter diferente al final
+
+        Aquí estás indicando:
+        Busca todo lo que comience por la cadena de caracteres “foto”
+        Que inmediatamente después tenga un solo caracter
+        Y que al final tenga la cadena de caracteres “.png”
+        
+        Pero si sabes que no tiene un solo caracter, sino que tiene varios, entonces escribes tantos 
+        signos de interrogación como caracteres existan. Por ejemplo, si quieres buscar las fotos que
+        tengan esta estructura “foto11.jpg”, escribes:
+        * ls -l foto??.jpg
+        * ls datos??? --> busca todas las coincidencias con datos al inicio y 3 caracteres diferntes al final
+
+        También puedes combinar wildcards. Por ejemplo, si sabes que tus fotos siguen esta especie de código, 
+        pero no sabes que extensión tienen, escribes:
+
+        * ls -l foto?.*
+
+        Aquí estás indicando:
+        Busca todo lo que comience por “foto”
+        Que inmediatamente después tenga un solo caracter
+        Y que tenga lo que sea después del punto
+
+    Buscar por caracteres específicos ([])
+        Si quieres buscar por varios caracteres específicos se usan corchetes. Para utilizarlos tienes que colocar dentro de los corchetes los caracteres que quieres buscar.
+
+        Por ejemplo, si quisieras buscar los archivos que comiencen por las letras “c” o “i”, entonces escribes:
+        
+        * ls [ad]* --> creo una clase para buscar archivos que inicien con a o con d en este caso
+        * ls -l [ci]*
+
+        Lo que indica el comando es que busque los archivos que comiencen por la letra “c” o por la letra “i” 
+        y que tengan lo que sea por delante. Cuando buscamos con esta wildcard ten en cuenta que es case
+         sensitive, por lo que la letra “i” no es lo mismo que la letra “I”.
+
+        * ls -l [cCiI]*ls -l foto[2-6]*
+
+    Por último, si quieres buscar por rango de números también tienes que usar esta wildcard. 
+    Para hacerlo, escribe el rango de números que quieres buscar separados por un guion.
+
+        * ls -l foto[2-6]*
+
+        Lo que indica ese comando es:
+
+        Busca todo lo que comience por la cadena de texto “foto”
+        Que justo después tenga un número entre el 2 y el 6
+        Y que tenga lo que sea por delante.
+
+        
+        * ls [[:upper:]]* --> busca todas las coincidencias que inicien con mayuscula
+        * ls -d [[:upper:]]* --> busca los directorios que inician con mayuscula
+        * ls -d [[:lower:]]* --> busca los directorios que iinician con minuscula

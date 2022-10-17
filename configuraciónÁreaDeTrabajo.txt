@@ -1,0 +1,153 @@
+1. instalar VSCode
+2. instalar las extensiones que me sirvan 
+3. instalar Windows Subsystem for Linux
+    https://learn.microsoft.com/en-us/windows/wsl/install-manual
+
+    abrir Windows powershell en modo administrador y pegar los comandos que dice la página
+    debo  habilitar la plataforma de máquina virtual de windows 
+        panel de control - programas - ir a activar o desactivar caracteristicas de windows
+        activar maquina virtual y tambien escritorio virtual
+    seguir las instrucciones de la página de microsoft
+
+4. TERMINAL DE LINUX EN WINDOWS
+    descargar e instalar la terminal en la tienda de windows
+
+5. INSTALAR ACTUALIZACIONES DE LA TERMINAL Y SUS DEPENDENCIAS
+
+    * sudo apt-get update --> para buscar actualizaciones de las dependencias de ubuntu
+    * sudo apt-get upgrade--> para instalar estas actualizaciones
+    * sudo apt install appQueQuieroInstalar--> para instalar aplicaciones en ubuntu
+
+    COMANDOS TERMINAL
+
+        * ls --> para listar 
+        * cd --> para cambiar de directorio
+        * cd .. --> me lleva una carpeta atras
+        * cd /carpeta a la que quiero ir --> para avanzar una carpeta adelante
+        * cd / --> para ir directo al directorio home o root
+        * cd mnt --> para ir a las carpetas de windows
+        * cd ~ --> me lleva a mi carpeta home
+        * mkdir --> para crear una carpeta 
+        * pwd --> para ver la ubicación en la que estamos    
+        * touch nombreArchivoQueQuieroCrear --> para crear un archivo
+        * sudo mkdir --> abro una carpeta o un archivo con permiso de administrador
+        * mv archivoQueQUieroMover carpetaAlaQueVoyAmover --> para archivoQueQUieroMover
+        * cat archivo que quiero abri --> para ver en consola un archivo
+        * man app que quiero ver su manual --> para ver las instrucciones de la aplicacion    
+        * ls -a --> Mostrar todos los archivos, incluso los ocultos
+        * ls -l --> Ver todos los archivos como una lista
+        * rm nombreArchivoQueQuieroBorrar.extension --> para borrar un solo archivo
+        * rm -d nombreCarpetaVacia --> Para borrar una carpeta vacia
+        * rm -rf nombreCarpetaQueQuieroBorrar --> para borrar una carpeta llena
+        * -->
+
+    IMPORTANTE: debo crear una carpeta en HOME de ubuntu para almacenar todos los proyectos que haga
+    
+6. INSTALAR nodejs y npm
+    * sudo apt install nodejs --> sirve para 
+    * sudo apt install npm --> contiene dependencias de 
+    * nodejs -v --> me muestra la version que esta instalada de nodejs
+
+    usar esta forma para instalar la version 17 de nodejs
+    * 1. Sudo apt install curl
+    * 2. curl -sL https://deb.nodesource.com/setup_17.x | sudo -E bash -
+    * 3, sudo apt install nodejs
+
+
+    IMPORTANTE: 
+        * npm --> me sirve para instalar paquetes permanentemente
+        * npx --> sirve para ejecutar paquetes desde internet sin instalarlos
+
+7. PARA EJECUTAR REACT DESDE INTERNET Y EJECUTARLO USO 
+    voy a la carpeta de proyectos personales en ubuntu y lo ejecuto ahí el comando
+    * npx create-react-app nombreDeLaCarpeta
+    * ahora le doy --> cd carpetaQueCree
+                   --> npm start
+    una vez ejecuto VSC y me aparece un error ejecuto en la terminal el siguiente comando
+    * sudo chown -R miUsuarioDeUbuntu ~todaLaCarpetaPersonal
+
+    
+8. GIT 
+    * git --version --> Para ver que version de GIT tengo desde la terminal
+
+    PARA ACTUALIZAR A LA ULTIMA VERSION
+    * sudo add-apt-repository ppa:git-core/ppa
+    * sudo apt update
+    * sudo apt install git
+
+    CONECTAR GIT CON UBUNTU
+    * ssh-keygen -t rsa -b 4096 -C "correoDeRegistroEnGithub" --> creo una llave ssh que es un token para validar github con git 
+        -t --> tipo de algoritmo que vamos a utilizr en nuestra llave
+        rsa --> protocolo de encriptación
+        -b --> 
+        4096 --> que tan grande va a ser la llave 
+
+        le doy enter y se guarda la clave en la carpeta que dice ahí, enter y me pide crear una contraseña
+        luego se genera una llave 
+
+        ingreso el comando 
+        * eval "$(ssh-agent -s)" --> para evaluar que hay un agente corriendo y todo este en orden
+
+        le doy enter e ingreso este comando
+        * ssh-copy-id emailDeGithub 
+        si no funciona esta uso 
+        * ssh-add ~/.ssh/id_rsa
+        enter e ingreso la contraseña que le puse 
+
+        enter y espero que termine, ahora copio la clave publica para pasarsela a github
+        voy al directorio donde esta la llave ssh (directorio cd ~/.ssh)
+
+        uso el comando 
+        * cat id_rsa.pub 
+        para ver la clave y copiarla, una vez copiada voy a github 
+
+        en la página de github en la parte de settings voy a SSH and GPG keys y en la parte de SSH le doy
+        New SSH key
+
+9. CONECTAR UN PROYECTO A UN REPOSITORIO DE GITHUB
+
+    voy a github y doy crear nuevo repositorio
+    como voy a crear un nuevo repositorio le doy los comandos de create new proyect
+
+    voy a la carpeta donde esta mi proyecto y le doy el comando 
+    * echo "# primerProyecto" >> README.md
+
+    luego le doy 
+    * git init
+
+    luego 
+    * git add . --> para agregar todos los archivos que hay en el repositorio 
+    ó
+    * git add nombrearchivos.extension README.ms
+
+    luego 
+    * git commit -m "first commit"
+
+    luego
+    me dice que ingrese mail y miUsuarioDeUbuntu
+    * git config --global user.email "you@example.com"
+    * git config --global user.name "Your Name"
+
+    para verificar que se configuro bien uso
+    * git config --edit --global 
+    me debe aparecer una pantalla con el mail y el usuario, para salir de esta hago crtl + x
+
+    luego
+    * git commit -m "first commit"
+    * git branch -M main
+    * git remote add origin https://github.com/alejandr0z/primerProyecto.git
+    * git push -u origin main
+
+    me pide usuario es el correo de github y la contraseña debo generar token en la página de 
+    github en la parte de developers
+
+PARA SUBIR CAMBIOS Y GUARDARLOS EN GITHUB 
+    * git add .
+    * git commit -m "mensaje, lo que cambie "
+    * git push -u origin main
+    usuario y token 
+
+
+token para 30 dias 
+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
+
