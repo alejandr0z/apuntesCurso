@@ -272,3 +272,4 @@ OPERADORESDE CONTROL
     EJECUTAR COMANDOS DE MANERA CONDICIONAL (Uso || para hacer el "o")
 
         Ejemplo: mkdir test || cd hsdfjsdjf || cd test
+
