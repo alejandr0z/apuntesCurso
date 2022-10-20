@@ -246,4 +246,29 @@ siguiente 📤.
     * echo "Texto" | lolcat esto lo imprime con colores bonitos 😂
 
 
+OPERADORESDE CONTROL
+    Son simbolos reservados por la terminal que permiten ejecutar mas de un comando o encadenarlos 
+    se pueden correr sincronamente o de forma asincrona, incluso con condicionales.
+
+    EJECUTAR COMANDOS DE MANERA SINCRONA (Uso ;)
+        osea se ejecutan uno detras de otro 
         
+        *cal es para mostrar un calendario en la terminal. 
+        
+        Ejemplo: ls; mkdir holaPrueba; cal
+
+    EJECUTAR COMANDOS DE MANERA ASINCRONA (Uso &)
+        Se ejecuta cada comando al tiempo osea en forma paralela en diferente hilo de mi procesador
+        
+        Ejemplo: ls & cal & mkdir holaPrueba
+
+    EJECUTAR COMANDOS DE MANERA CONDICIONAL (Uso && para hacer el "y")
+        Se ejecuta un comando y si se cumple se ejecuta el siguiente 
+
+        Ejemplo: mkdir test && cd test && touch test.txt
+
+        si existe un error en cualquiera de los comandos el siguiente no se ejecuta
+    
+    EJECUTAR COMANDOS DE MANERA CONDICIONAL (Uso || para hacer el "o")
+
+        Ejemplo: mkdir test || cd hsdfjsdjf || cd test
