@@ -145,6 +145,6 @@ PARA SUBIR CAMBIOS Y GUARDARLOS EN GITHUB
     usuario y token 
 
 
-token para 30 dias 
+token para 30 dias.
 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
 
