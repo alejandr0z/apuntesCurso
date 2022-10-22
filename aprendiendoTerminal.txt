@@ -219,8 +219,9 @@ ENTRADAS Y SALIDAS DE LA TERMINAL
 
 REDIRECCIONES: PIPE OPERATOR 
 
-Es uno de los operadores mas útiles que existen, ya que nos permite poner varios comandos, tales que la salida de uno es la entrada del 
-siguiente 📤.
+    Es uno de los operadores mas útiles que existen, ya que nos permite poner varios comandos, tales que la salida 
+    de uno es la entrada del siguiente 📤.
+
     * echo <texto> genera un stdout con el texto que tenemos, osea solo muestra el texto que le pase.
     * less <archivo> --> sirve para visualizar lo que hay en un documento
         Puedo buscar dentro de este usando / <lo que quiero buscar)
@@ -252,24 +253,160 @@ OPERADORESDE CONTROL
 
     EJECUTAR COMANDOS DE MANERA SINCRONA (Uso ;)
         osea se ejecutan uno detras de otro 
-        
-        *cal es para mostrar un calendario en la terminal. 
-        
+               
         Ejemplo: ls; mkdir holaPrueba; cal
+
+        * cal es para mostrar un calendario en la terminal.
+        * date muestra la fecha 
+        * echo muestra el texto que se le pasa 
+            Ejemplo: echo "HOLA"
 
     EJECUTAR COMANDOS DE MANERA ASINCRONA (Uso &)
         Se ejecuta cada comando al tiempo osea en forma paralela en diferente hilo de mi procesador
         
         Ejemplo: ls & cal & mkdir holaPrueba
 
-    EJECUTAR COMANDOS DE MANERA CONDICIONAL (Uso && para hacer el "y")
+    EJECUTAR COMANDOS DE MANERA CONDICIONAL AND (Uso && para hacer el "y")
         Se ejecuta un comando y si se cumple se ejecuta el siguiente 
 
         Ejemplo: mkdir test && cd test && touch test.txt
 
         si existe un error en cualquiera de los comandos el siguiente no se ejecuta
     
-    EJECUTAR COMANDOS DE MANERA CONDICIONAL (Uso || para hacer el "o")
+    EJECUTAR COMANDOS DE MANERA CONDICIONAL OR (Uso || para hacer el "o")
 
         Ejemplo: mkdir test || cd hsdfjsdjf || cd test
+    
+    COMBINANDO OPERADORES DE CONTROL
+
+        Ejemplo: cd ~eres || cd ~/apuntesCurso/ && mkdir prueba
+
+
+COMO SE MANEJAN LOS PERMISOS
+    Los permisos son las capacidades que tiene cada usuario dentro del sistema operativo, no todos los usuarios
+    pueden hacer todas las acciones sobre ciertos archivos y carpetas.
+
+    TIPOS DE ARCHIVOS
+
+        * - --> es un achivo normal, como un documento de texto, una foto, un video, etc.
+        * d --> Por directory es un directorio
+        * l --> es un link simbolico
+        * b --> es un archivo de bloque especial, son archivos que manejan la información de los 
+            bloques de datos como una usb, la información de un disco duro       
+
+    TIPOS DE MODOS 
+
+        PERMISOS DE USUARIO 
+
+        Los siguientes caracteres se leen de 3 en 3, por cada uno de los tipos de usuario.
+
+        Owner
+        El dueño del archivo, si no se ha cambiado, es quien lo creo y tiene mayor jerarquía sobre los otros 3. Le corresponden los primeros 3 caracteres de los permisos.
+
+        Group
+        Se puede crear grupos de usuarios para darle a todos o varios los mismos permisos. A estos usuarios le corresponden el cuarto, quinto y sexto caracter de los permisos de usuarios y tienen mayor jerarquía que el último.
+
+        World
+        También llamado “otros”, es cualquier otro usuario que no pertenezca a un grupo de usuario y tampoco sea el dueño, este tiene la menor jerarquía.
+
+        Son los tipos de permisos dependiendo quien es el que actua sobre ellos, cada una de las estas categorias 
+        tiene 3 tipos de permiso 
+            r --> read
+            w --> write
+            x --> execute
+
+            cada permiso esta activo si tiene un 1 y un 0 si no se puede manipular
+            estos permisos se representan en modelo 3 bits o sistema octal
+
+                Sistema octal 
+                    el bit de la derecha tiene un valor de 4
+                    el del medio un valor de 2
+                    y el de la izquierda un valor de 1 
+
+        * DUEÑO (Soy yo)
+            rwx --> 1 1 1
+            en modo octal seria un 7
+        * GRUPO (Cuando comparto con algún grupo o persona)
+            r-x --> 1 0 1 
+            en modo octal seria un 5
+        *  WORLD (Cuando comparto con cualquier persona que no sea la anterior)
+            r-x --> 1 0 1
+            en modo octal seria un 5
+        
+        Los permisos se escriben en ese orden rwx. Para indicar que el permiso no está disponible, se escribe un guion
+
+        Ejemplos: 
+            * drwxr-xr-x 
+                d porque es un directorio, 
+                rwx osea el owner (dueño) puede leer, escribir y ejecutar
+                r-x osea el group puede leer y ejecutar 
+                r-x el world solo puede leer y ejecutar 
+
+            * -rw-r--r--
+                - Esto es un archivo normal, como una imágen o un video
+                rw- osea el owner puede solo leer y escribir
+                r-- el group solo puede leer 
+                r-- el world solo puede leer 
+
+    
+        MODO SIMBÓLICO
+            * u --> permisos solo para el usuario
+            * g --> permisos solo para el grupo
+            * o --> permisos solo para para otras personas (es el world)
+            * a --> permisos para todos
+
+    EJERCICIOS
+        Convierte los siguientes permisos a símbolos y en su representación numérica:
+
+        * De un directorio, el dueño tiene permiso de lectura y escritura, el grupo tiene permisos de escritura 
+          y ejecución y world no tiene permisos.
+            drw--wx---
+
+        * De un enlace simbólico el dueño tiene todos los permisos, el grupo y world sólo de lectura.
+            lrwxr--r--
+
+        * De un archivo comun todos tienen todos los permisos, pero el world no tiene permiso de ejecución.
+            -rwxrwxrw-
+
+
+MODIFICANDO PERMISOS DE LA TERMINAL 
+
+    MANEJO DE USUARIO ROOT 
+    Este usuario tiene acceso total al sistema
+
+    Para cambiar de usuario en ubuntu uso
+    * su root --> me pide la contraseña y es la misma que puse antes 
+    * sudo su --> lo uso para cambiar de usuario en WSL ya que la anterior no esta activa 
+        debo activarla por seguridad, tener la contraseña usuario con la de root diferentes 
+
+        para cambiar la contraseña de root voy a root y le doy 
+        * passwd --> me pide la nueva contraseña
+
+    * sudo rm texto.txt --> usar sudo me da los permisos de root pero sin estar en usuario root
+
+    MODIFICANDO PERMISOS CON MODO OCTAL 
+
+        * > texto.txt --> Puedo creear un archivo de texto solo colocando el comando > (acá creé el archivo texto.txt)
+        * cat > texto.txt --> puedo usar el editor mas sencillo usando este comando, para salir es ctrl + d 
+        
+        Ejemplo: si veo los permiso de mi archivo de texto original son (uso ls -l)
+            -rwxr-xr-x
+            ahora voy a cambiar los permisos con chmod
+
+        * chmod 757 texto.txt --> lo uso para cambiar los permisos del archivo, le doy valores en modo octal para owner, group y world
+        
+        Ejemplo: ahora los nuevos permisos son 
+            -rwxrwxrwx
+    
+    MODIFICANDO PERMISOS CON MODO SIMBÓLICO
+
+        * chmod u-x,g-w-x,o-w texto.txt
+
+    CAMBIAR LA CONTRASEÑA
+        * passwd --> ingreso este comando y voy a poder cambiar la contraseña 
+
+    * whoami --> me da la info del usuario en el que estoy
+    * id --> me da la informacion de los grupos a los que pertenezco 
+    
+
 
