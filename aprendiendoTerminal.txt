@@ -384,6 +384,25 @@ MODIFICANDO PERMISOS DE LA TERMINAL
 
     * sudo rm texto.txt --> usar sudo me da los permisos de root pero sin estar en usuario root
 
+    --> Con el comando chmod podemos cambiar los permisos de los archivos de dos formas, una es usando los símbolos
+        (rwx) y otra es con el sistema octal.
+
+        Cómo cambiar los permisos de un archivo (chmod)
+        Es bastante sencillo cambiar los permisos de forma simbólica. Para esto, hay que escribir después del comando
+        chmod el símbolo del usuario, luego el operador y por último el permiso que quieres agregar o quitar.
+
+        chmod [simboloDelUsuario][operador][permiso] [archivoParaCambiarSusPermisos]
+
+              owner	     |  group	|   others
+        -----------------|----------|------------
+            u (de user)	 |    g	    |     o
+        -----------------|----------|------------
+              Operador	 |       Función
+        -----------------|-----------------------
+                 +	     |   Añade un permiso
+                 -	     |   Quita un permiso
+                 =	     |   Asigna un permiso
+
     MODIFICANDO PERMISOS CON MODO OCTAL 
 
         * > texto.txt --> Puedo creear un archivo de texto solo colocando el comando > (acá creé el archivo texto.txt)
@@ -404,9 +423,59 @@ MODIFICANDO PERMISOS DE LA TERMINAL
 
     CAMBIAR LA CONTRASEÑA
         * passwd --> ingreso este comando y voy a poder cambiar la contraseña 
+        * ¿Qué hacer en caso de olvidar una contraseña?Si estás usando Windows Subsystem for Linux (wsl) 
+            y se te olvidó la contraseña del root. Sigue estos pasos: 
+                Abre el cmd de windows y ejecuta este comando wsl --user root.
+                Esto hará que se inicie en la terminal wsl con el usuario root.
+                Luego ejecuta el comando passwd root el cual te permitirá cambiar la contraseña del usuario root.
+                Ya con esto puedes volver a la terminal de wsl y volver a ejecutar el comando su root.
 
     * whoami --> me da la info del usuario en el que estoy
     * id --> me da la informacion de los grupos a los que pertenezco 
+
+    CAMBIAR AL PROPIETARIO (chown)
+        Puede que no te quieras hacer responsable de tus archivos, así que se los quieres dejar a alguien más. 
+        Para eso usa el comando chown Change Owner. La sintaxis es muy simple:
+
+        * chown [usuarioAlQuePertenecerá] [archivo]
+
+VARIABLES DE ENTORNO
+    La terminal, shell y linea tiene de comandos tienen una configuración, y a ellas puedo acceder con las 
+    variables de entorno.
+
+    LINKS SIMBÓLICO
+        Son un tipo de archivo que hacen referencia a un lugar, se los borra igual que cualquier otro archivo,
+        básicamente es un acceso directo desde terminal 📁
+        
+        * ln -s <ruta> <Nombre> 
+
+        * printenv --> nos muestra todas las variables de entorno que tenemos configuradas 📔
+
+        * echo $<variables> --> esto nos sirve para imprimir una variable en particular
+            Ejemplo: * echo $HOME --> es nuestro HOME de usuario
+                     * echo $PATH --> tiene todas las rutas donde se encuentran los binarios en los que se ejecuta 
+                        nuestro sistema. Hay varios manejadores de paquetes para binarios, pero no todas las veces 
+                        se agregan a PATH, y se deben agregar a mano.
     
+    MODIFICAR LAS VARIABLES DE ENTORNO
+        En HOME, existe un archivo que se llama .bashrc que es donde está nuestra configuración de Bash. 
+        Lo podemos abrir con VS Code para modificarlo. en este archivo .bashrc puedo agregar los ALIAS, 
+        agregar o modificar VARIABLES DE ENTORNO y tambien puedo agregar una nueva ruta a la variable PATH,
+        osea cuando agregue nuevos binarios.
+        si estuviera en mac deberia editar el archivo .zshrc que es el bash en mac
 
+            para abrirlo hago 
+            * code .bashrc 
 
+            * code <archivo> para abrir un archivo de texto en VS Code desde la terminal.        
+
+        PARA CREAR ALIAS
+            * alias <nombre>="comando" --> para crear un alias
+        
+        PARA CREAR O MODIFICAR VARIABLES DE ENTORNO
+            
+            Ejemplo:  PLATZI="Hola amigos"
+        
+        PARA AGREGAR UNA NUEVA RUTA A LA VARIABLE PATH
+
+            * PATH=$PATH:<ruta>
