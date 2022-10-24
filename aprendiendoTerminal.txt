@@ -456,6 +456,9 @@ VARIABLES DE ENTORNO
                      * echo $PATH --> tiene todas las rutas donde se encuentran los binarios en los que se ejecuta 
                         nuestro sistema. Hay varios manejadores de paquetes para binarios, pero no todas las veces 
                         se agregan a PATH, y se deben agregar a mano.
+
+                        o tambien para verlas mas ordenadas
+                     * echo $PATH | tr : \\n
     
     MODIFICAR LAS VARIABLES DE ENTORNO
         En HOME, existe un archivo que se llama .bashrc que es donde está nuestra configuración de Bash. 
@@ -471,6 +474,14 @@ VARIABLES DE ENTORNO
 
         PARA CREAR ALIAS
             * alias <nombre>="comando" --> para crear un alias
+
+            Es muuuy importante tener cuidado con los alias, nunca hay que nombrar un alias como un comando ya existente 😟
+
+            Para ver los alias que tengo en lista en la terminal le doy el comando 
+                * alias
+
+            Tambien es posible saber si un comando en especifico es un alias o no. Con el comando type podremos saber esto
+            Ejemplo: * type <alias que quiero saber si existe> 
         
         PARA CREAR O MODIFICAR VARIABLES DE ENTORNO
             
@@ -483,4 +494,4 @@ VARIABLES DE ENTORNO
         IMPORTANTE: SIEMPRE QUE HAGA UNA MODIFICACION EN EL ARCHIVO .bashrc DEBO EJECUTAR EN LA TERMINAL EL 
         COMANDO bash SOLO, ASÍ SE ACTUALIZA TODO.
 
-        
+
