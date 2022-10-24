@@ -459,6 +459,8 @@ VARIABLES DE ENTORNO
 
                         o tambien para verlas mas ordenadas
                      * echo $PATH | tr : \\n
+                     * echo $BASH_VERSION --> para saber la versión de bash que tengo 
+                     * echo $SHELL --> Dirección de la shell que estoy usando
     
     MODIFICAR LAS VARIABLES DE ENTORNO
         En HOME, existe un archivo que se llama .bashrc que es donde está nuestra configuración de Bash. 
@@ -494,4 +496,5 @@ VARIABLES DE ENTORNO
         IMPORTANTE: SIEMPRE QUE HAGA UNA MODIFICACION EN EL ARCHIVO .bashrc DEBO EJECUTAR EN LA TERMINAL EL 
         COMANDO bash SOLO, ASÍ SE ACTUALIZA TODO.
 
-
+COMANDOS DE BUSQUEDA 
+    
