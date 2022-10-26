@@ -497,4 +497,166 @@ VARIABLES DE ENTORNO
         COMANDO bash SOLO, ASÍ SE ACTUALIZA TODO.
 
 COMANDOS DE BUSQUEDA 
+    Nos sirven para encontrar archivos y directorios, y filtrarlos dependiendo su extension, Nombre, ubicación, etc
+    Ejemplo: cuando queremos buscar archivos.log que son archivos de texto plano que recopilan iformación de un 
+    archivo en ejecución por ejemplo google chrome crea un archivo.log para guardar que página visita, si hay 
+    algun error en el sistema.
+
+    PARA BUSCAR ARCHIVOS BINARIOS
+        * which <archivo> --> nos busca los archivos binarios en la ruta de PATH
+        (binario es un programa que se va a ejecutar)
+
+        Ejemplo: which code --> me da la direccion donde esta VSC 
+
+    BUSQUEDA CON FIND 
+
+        * find [rutaDesdeDondeEmpezarBuscar] [opciones]
+
+        * find <rutaInicialDeBusqueda> -name nombreDelArchivo --> nos permite encontrar un archivo
+          según la ruta indicada y el nombre.
+
+        SEGMENTAR POR EL NOMBRE (-name)
+            Ejemplo: voy a buscar en mi carpeta home todos los archivos que tenga una extensión “.png”.
+
+                * find ./ -name *.png
+                El punto indica que debe empezar desde la carpeta en la que está y la opción -name es para 
+                especificar el nombre que debe buscar.
+
+            * find <rutaInicialDeBusqueda> -name *.extencion --> nos permite buscar los archivos según 
+            la extencion desde la ruta indicada, en este caso se usa wildcards
+            
+                * find <rutaInicialDeBusqueda> -name *.extencion | less --> para realizar lo mismo de arriba 
+                pero de forma mas ordenada 
+
+        SEGMENTAR POR EL TIPO (-type)
+            También puedo segmentar por el tipo, si es un archivo o si es un directorio utilizando la 
+            opción -type, el cual acepta f para archivos, d para directorios y l para enlaces simbólicos.
+
+            Si quiero usar más de una opción lo separo por comas.
+
+            Ejemplo: find ./ -type f -name "f*"
+                Esto me muestra todos los archivos que comiencen con la letra “f”.
+            
+            Ejemplo: buscando archivos y directorios
+                find ./ -type f,d -name "D*"
+
+            * find <rutaInicialDeBusqueda> -type fd -name nombreDelArchivo --> type nos permite
+              segmentar por f (files) o d (directorios)
+
+        SEGMENTAR POR TAMAÑO (-size)
+            Con la opción -size puedo segmentar por tamaño ingresando el peso que quiero buscar. 
+            Esta opción tiene un uso un tanto especial. Primero que todo hay que colocar la unidad 
+            de peso c para byte, k para Kilobyte, M para Megabyte y G para Gygabyte.
+
+            Ejemplos:
+                * find ./ -size 4k
+                Buscará los archivos que pesen exactamente 4kb. Pero claro, atinar el peso exacto de un 
+                archivo no es para nada sencillo, así que podemos especificar que sea ese peso en adelante
+                con el símbolo + o de ese peso para abajo con el símbolo -
+
+                * find ./ -size +4k
+                Busca los archivos que pesen 4kb o más.
+
+                * find ./ -size -4k
+                Busca los archivos que pesen 4kb o menos.
+
+            * find <rutaInicialDeBusqueda> -size tamañoYUnidadDeMedida --> busqueda por tamaño del archivo
+
+    BUSCAR VACIOS (-empty)
+        Para buscar los archivos vacíos uso la opción empty, no hay que especificarle nada, solo escribirla.
+
+        Ejemplo: find ./ -type d -empty
+        busca todas las carpetas vacías
+
+    LIMITAR LA BUSQUEDA (-maxdepth -mindepth)
+        Puede que no quiera buscar en absolutamente todas las carpetas del sistema, sino que quiero 
+        únicamente un pedacito. Para eso limito la profundidad de carpetas a la que el comando debe buscar, 
+        esto se hace con la opción -maxdepth seguido de la profundidad.
+        * find ./ -type d -maxdepth 2
+
+        a veces ya conozco más o menos la estructura de mis carpetas, así que quiero
+        saltar niveles, por lo que le asigno una profundidad mínima al comando.
+        * find ./ -type d -mindepth 2
+
+    Es recomendable pasar el output al comando less
+    * find ./ | less
+
+
+    EJERCICIOS
+        Buscar todos los archivos .txt desde el home y guardarlo en un archivo.txt y mostar que fue creado
+        correctamente
+            SOLUCION
+            * find ./ -type f -name "*.txt" | tee misArchivos.txt && echo "Archivos guardados"
+            * find ~ -name "*.txt" > archivosDeTexto.txt && cowsay "Se guardaron los archivos :)"|lolcat
+                archivosDeTexto.txt|lolcat
+        
+        Busca tus archivos mayores a 100Mb, con una profundidad máxima de 4, que comiencen por la letra c.
+            * find /mnt/c/Users/aleja/OneDrive/Documentos -type f -name c* -size 1M | less
+        
+        Busca los archivos que tengan extensión “.pdf” con una profundidad mínima de 2.
+            * find /mnt/c/Users/aleja/OneDrive -type f -name *.pdf -mindepth 1 | less
+        
+        Busca todas las carpetas que comiencen por la letra “A” con una profundidad máxima de 5, que estén vacías.
+            * find /mnt/c/Users/aleja -type d -name b* -maxdepth 5 | less
+        
+        Busca todo lo que tenga una letra “j” que pese más de 1b. Luego guarda la salida en un archivo llamado
+        “LosArchivosJ.txt” y cuando termine de hacer todo eso imprime un mensaje que diga 
+        “Comando terminado con éxito”.
+            * find /mnt/c/Users/aleja/OneDrive/Documentos -type f -name C* -size +1c | tee archivos.txt | echo "archivos creados correctamente" | lolcat 
     
+USANDO EL COMANDO GREP
+    Grep permite encontrar coindidencias de una búsqueda dentro de un archivo de texto 
+
+    ¿Qué significa grep?
+    “Grep” significa Global Regular Expression Print.
+
+    El comando grep utiliza regex (Regular Expression) para realizar su búsqueda
+
+    La sintaxis es sencilla
+        * grep [ExpresiónRegular] [archivoDondeBuscar]
+        osea [greap loQueQuieroBuscar] [archivoDondeBuscar]
+
+    buscar una palabra dentro del archivo de texto movies.csv
+        * grep Towers movies.csv
+
+    IGNORAR CASE SENSITIVE (-i)
+        Puede que quiera buscar la palabra “Action” pero eso dará exclusivamente las coincidencias con la “A”
+        mayúscula. Esto lo puedo ignorar con la opción -i, que buscará independientemente de si la letra “A” 
+        es mayúscula o minúscula
+            * grep -i Action movies.csv
+
+    CONTAR OCURRENCIAS (-c)
+        Si quiero saber cuántas veces se repite una palabra, uso la opción -c seguida de la palabra 
+        que quiero buscar.
+            * grep -c Drama movies.csv
+
+    EXCLUIR UNA EXPRESIÓN (-v)
+        Para saber cuáles son los resultados que NO coinciden con la expresión regular, uso la opción -v.
+
+            Por ejemplo, si quiero contar todas las películas que no son de drama, escribo:
+            * grep -cv Drama movies.csv
+
+    LIMITAR LA BUSQUEDA (-m)
+        Para no buscar en todo el archivo, sino las primeras ocurrencias, puedo limitar la búsqueda en 
+        líneas con la opción -m seguida del número de líneas que quiero encontrar.
+
+            Por ejemplo, si quiero buscar las primeras 10 líneas que concuerden con la palabra “Fan” escribo
+            * grep -m 10 Fan movies.csv
+
+    CONTAR CUANTAS LINEAS HAY 
+        * wc <archivo>
+            Ejemplo: wc movies.csv
+            la primera columna me indica cuantas lienas tiene el archivo, la segunda columna cuantos caracteres
+            tiene, la tercera me indica cuantos bits tiene y la ultima es el nombre.
+
+            * wc -l movies.csv --> indica cuantas lineas hay 
+            * wc -w movies.csv --> indica cuantas palabras hay
+            * wc -c movies.csv --> indica cuantos bytes hay
+
+COMPRIMIENDO ARCHIVOS TAR Y ZIP
+     tar y zip son formatos de compresion 
+
+     El formato .tar es un tipo de compresión bastante usado en UNIX. Originalmente era utilizado para almacenar 
+     información en cintas magnéticas, así que está hecho especialmente para comprimir los archivos de forma lineal.
+
+     * tar [opciones] [nombreDelArchivoComprimido] [archivoAComprimir]
