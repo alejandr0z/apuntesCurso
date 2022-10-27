@@ -653,10 +653,96 @@ USANDO EL COMANDO GREP
             * wc -w movies.csv --> indica cuantas palabras hay
             * wc -c movies.csv --> indica cuantos bytes hay
 
+
+UTILIDADES DE REDIRECCIONES
+    * ifconfig --> me muestra informacion de nuestra red 
+
+    * ping --> me sirve para ver si una página esta activa 
+        * Limitar los paquetes enviados (-c)
+          Para limitar la cantidad de paquetes que envio, uso la opción -c seguida del número de paquetes por enviar
+          Ejemplo: ping -c 4 www.google.com
+        
+        * Especificar el tamaño de los paquetes (-s)
+          Para probar la conectividad con paquetes de diferentes tamaños utilizo la opción -s
+          seguido del tamaño del paquete que deseo usar. El tamaño debe ser en bytes
+          Ejemplo: ping -s 20 www.google.com
+
+    * curl --> me sirva para traer todo el html de una página web
+        puedo obtener archivos que proporcione un sitio web o dirección IP con el comando curl
+        Este mostrará la información que haya encontrado en la consola.
+        Ejemplo: curl www.google.com 
+
+        si quiero guardar este html lo que hago es 
+        Ejemplo. curl www.google.com > index.html
+
+    * wget --> me descarga automaticamente el index.html de una página de internet
+        Ejemplo: wget www.google.com
+
+    * traceroute --> 
+        Cuando nos conectamos a una página en internet no nos conectamos directamente a los servidores 
+        en los que está almacenada esa página, sino que primero se pasa por otros servidores que son 
+        como intermediarios entre la computadora y el servidor.
+        Ejemplo: traceroute www.google.com
+
+    * netstat -i --> me muestra los dispositivos de red 
+    
+
+
 COMPRIMIENDO ARCHIVOS TAR Y ZIP
-     tar y zip son formatos de compresion 
 
-     El formato .tar es un tipo de compresión bastante usado en UNIX. Originalmente era utilizado para almacenar 
-     información en cintas magnéticas, así que está hecho especialmente para comprimir los archivos de forma lineal.
+     Puedo crear archivos comprimidos .zip o .tar desde la terminal. 🤖
+     .tar se usa mucho en repositorios. Para comprimir
 
-     * tar [opciones] [nombreDelArchivoComprimido] [archivoAComprimir]
+    FORMATO .TAR Y .TAR.GZ
+
+        COMPRIMIENDO CON .tar y .tar.gz
+
+            El formato .tar es un tipo de compresión bastante usado en UNIX. Originalmente era utilizado para almacenar 
+            información en cintas magnéticas, así que está hecho especialmente para comprimir los archivos de forma lineal.
+
+            * .tar [opciones] [nombreDelArchivoComprimido] [archivoAComprimir]
+                donde c → compress, v → verbose (ver lo que comprimio), f→ file
+                Ejemplo: tar -cvf toCompress.tar toCompress/
+
+            * .tgz es aun mejor, se usa el mismo comando de .tar pero con la bandera z→zip 
+                * tar cvzf <nombreCarpetaAcomprimir>.tgz <archivos>.
+                    Ejemplo: tar -cvf comprimido.tgz toCompress
+                Usa el algoritmo gzip que es muy eficiente para comprimir
+        
+        PARA DESCOMPRIMIR .tar y .tar.gz
+
+            Para descomprimirlo, uso el mismo comando pero con la bandera x → decompress en lugar de c → compress.
+            Para que funcione, debo descomprimir usando el mismo tipo de compresión (tar o zip).
+
+                Ejemplo: descomprimiendo .tar
+                    * tar -xvf <archivoAcomprimido>.tar
+                
+                Ejemplo: descomprimiendo .tgz
+                    * tar xvfz <archivoAcomprimido>.tgz
+    
+    FORMATO .RAR
+    
+        PARA COMPRIMIR CON .rar
+            * rar a <nombreCarpetaAcomprimir>.rar <archivoAcomprimir>
+        
+        PARA COMPRIMIR CON CONTRASEÑA
+            * rar a -p <nombreCarpetaAcomprimir>.rar <archivoAcomprimir>
+
+        PARA DESCOMPRIMIR EN .rar
+            * unrar x <nombreCarpetaAdescomprimir.rar>
+
+        PARA VER QUE TIENE UN RAR 
+            * rar l <archivoAcomprimido>.rar
+        
+    
+    FORMATO ZIP
+
+        PARA COMPRIMIR CON .zip
+            * zip -r <nombreCarpetaAcomprimir>.rar <archivoAcomprimir>
+
+        PARA DESCOMPRIMIR CON .zip
+            * unzip <nombreCarpetaAdescomprimir.rar>
+
+MANEJO DE PROCESOS 
+    
+
