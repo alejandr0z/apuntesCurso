@@ -25,7 +25,7 @@
         * cd .. --> me lleva una carpeta atras
         * cd /carpeta a la que quiero ir --> para avanzar una carpeta adelante
         * cd / --> para ir directo al directorio home o root
-        * cd mnt --> para ir a las carpetas de windows
+        * cd /mnt/c o d --> para ir a las carpetas de windows
         * cd ~ --> me lleva a mi carpeta home
         * mkdir --> para crear una carpeta 
         * pwd --> para ver la ubicación en la que estamos    
